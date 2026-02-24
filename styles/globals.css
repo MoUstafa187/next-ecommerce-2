@@ -1,0 +1,199 @@
+@import "tailwindcss";
+
+@theme {
+  --color-obsidian-900: #020202;
+  --color-obsidian-800: #08080a;
+  --color-void: #000000;
+
+  --color-mercury-teal: #0d2a2d;
+  --color-mercury-violet: #1a0b2e;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-void);
+    color: #ffffff;
+    cursor: none;
+    overflow-x: hidden;
+  }
+
+  a,
+  button {
+    cursor: none;
+  }
+
+  ::selection {
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+  }
+}
+
+@layer utilities {
+  .fluid-mercury-bg {
+    position: fixed;
+    inset: -50%;
+    z-index: -1;
+    background: radial-gradient(circle at 50% 50%, var(--color-mercury-teal) 0%, transparent 40%),
+      radial-gradient(circle at 80% 20%, var(--color-mercury-violet) 0%, transparent 40%);
+    background-size: 100% 100%;
+    filter: blur(80px);
+    opacity: 0.6;
+    animation: shiftMesh 20s infinite alternate linear;
+    pointer-events: none;
+  }
+
+  @keyframes shiftMesh {
+    0% {
+      transform: translate(0, 0) scale(1);
+    }
+
+    33% {
+      transform: translate(10%, 5%) scale(1.1);
+    }
+
+    66% {
+      transform: translate(-5%, -10%) scale(0.9);
+    }
+
+    100% {
+      transform: translate(0%, 0%) scale(1);
+    }
+  }
+
+  .glass-2 {
+    background: rgba(2, 2, 2, 0.4);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    color: #fff;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  .glass-2:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+  }
+
+  .glow-stroke {
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    transition: box-shadow 0.5s ease;
+  }
+
+  .glow-stroke:hover {
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4), 0 0 20px rgba(255, 255, 255, 0.1);
+  }
+
+  /* Neon Cyan God Mode utilities */
+  .neon-cyan {
+    color: #00ffff;
+    text-shadow: 0 0 10px #00ffff, 0 0 30px rgba(0, 255, 255, 0.5);
+  }
+
+  .neon-cyan-glow {
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.4), 0 0 60px rgba(0, 255, 255, 0.15), inset 0 0 0 1px rgba(0, 255, 255, 0.4);
+  }
+
+  /* Glitch animation */
+  @keyframes glitch-1 {
+    0% {
+      clip-path: inset(0 0 95% 0);
+      transform: translate(-4px, 0);
+    }
+
+    25% {
+      clip-path: inset(40% 0 50% 0);
+      transform: translate(4px, 0);
+    }
+
+    50% {
+      clip-path: inset(70% 0 10% 0);
+      transform: translate(-2px, 0);
+    }
+
+    75% {
+      clip-path: inset(20% 0 70% 0);
+      transform: translate(3px, 0);
+    }
+
+    100% {
+      clip-path: inset(0 0 95% 0);
+      transform: translate(0, 0);
+    }
+  }
+
+  @keyframes glitch-2 {
+    0% {
+      clip-path: inset(80% 0 0 0);
+      transform: translate(4px, 0);
+      opacity: 0.8;
+    }
+
+    30% {
+      clip-path: inset(10% 0 60% 0);
+      transform: translate(-4px, 0);
+      opacity: 0.6;
+    }
+
+    60% {
+      clip-path: inset(55% 0 30% 0);
+      transform: translate(2px, 0);
+      opacity: 0.9;
+    }
+
+    100% {
+      clip-path: inset(80% 0 0 0);
+      transform: translate(0, 0);
+      opacity: 0;
+    }
+  }
+
+  @keyframes scanlines-move {
+    0% {
+      background-position: 0 0;
+    }
+
+    100% {
+      background-position: 0 100px;
+    }
+  }
+
+  .scanlines {
+    background-image: repeating-linear-gradient(0deg, transparent, transparent 2px,
+        rgba(0, 255, 255, 0.03) 2px, rgba(0, 255, 255, 0.03) 4px);
+    animation: scanlines-move 4s linear infinite;
+    pointer-events: none;
+  }
+
+  @keyframes holo-shift {
+    0% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .holo-text {
+    background: linear-gradient(90deg, #fff 0%, #00ffff 30%, #ff00ff 60%, #fff 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: holo-shift 4s linear infinite;
+  }
+
+  /* No scrollbar utility */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
